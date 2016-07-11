@@ -51,5 +51,16 @@ body {
     left: 0 !important;
     min-width: inherit; }
 
-.slider .item {
-  float: left; }
+.slider .item-slider {
+  float: left;
+  position: relative; }
+  .slider .item-slider img {
+    width: 100%; }
+
+.slider .slider-wrap {
+  -webkit-transition: 0.35s;
+  transition: 0.35s; }
+
+.slider .slider-content {
+  position: relative;
+  overflow: hidden; }

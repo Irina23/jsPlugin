@@ -164,43 +164,113 @@ $(document).ready(function() {
     (function () {
         $.fn.sliderPlugin = function(options){
             var options = $.extend({
-                nav:true,
-                items:1
+                'nav': true,
+                'items': 1,
+                'cItem': 'item',
+                'slider_wrap': 'slider-wrap',
+                'slider_content': 'slider-content',
+                'item_slider': 'item-slider'
             }, options);
 
-            return this.each(function(){
+            var $self = this,
+                storage = {};
+            var methods = {
+                init: function(){
+                    methods.addWrap();
+                    methods.getData();
 
-                var $self = $(this),
-                    storage = {};
-                var methods = {
-                    init : function(){
-                        methods.bindEvents();
-                    },
-
-                    bindEvents: function(){
-
-
+                    methods.widthSliderCss();
+                    if (options.nav===true){
+                        methods.addNav();
                     }
 
 
+                },
+
+                getData: function () {
+
+                    storage.number_slider = $self.find('.' + options.item_slider).length;
+                    storage.widthWrap = $('.'+ options.slider_wrap).width();
+                    storage.widthItem = storage.widthWrap/options.items;
+                    storage.widthSlider = storage.widthItem * $self.find('.' + options.item_slider).length;
+                    storage.navIndex = options.items;
+                    //console.log(storage.widthSlider);
+
+                },
+
+                addWrap: function () {
+                    $('.' + options.cItem).wrap("<div class=" + options.item_slider + "></div>");
+                    $('.'+options.item_slider).wrapAll("<div class='slider-wrap'></div>");
+                    $('.'+options.slider_wrap).wrapAll("<div class="+options.slider_content+"></div>");
+                },
+                widthSliderCss: function () {
+                    $('.'+options.item_slider).css('width', storage.widthItem+'px');
+                    $('.'+options.slider_wrap).css('width', storage.widthSlider+'px');
+                },
+                addNav: function () {
+                    $self.append("<div class='nav'><ul><li class='prev'>prev</li><li class='next'>next</li></ul></div>");
+                    $self.on( 'click', '.nav li.next',function () {
+                        methods.clickNavNext();
+                        methods.activeItems();
+                    });
+                    $self.on( 'click', '.nav li.prev',function () {
+                        methods.clickNavPrev();
+                        methods.activeItems();
+
+                    });
+                },
+                clickNavNext: function(){
+                    storage.navIndex ++;
+                    storage.translate3d = (storage.navIndex - options.items)* storage.widthItem;
+                    console.log(storage.translate3d);
+                    if(storage.translate3d<=0){
+                        $('.'+options.slider_wrap).css('transform', 'translate3d(0px, 0px, 0px)');
+                        storage.navIndex = options.items;
+                    } else{
+                        if((storage.widthSlider-(options.items-1)*storage.widthItem)>storage.translate3d){
+                            $('.'+options.slider_wrap).css('transform', 'translate3d(-'+storage.translate3d+'px, 0px, 0px)');
+                        } else{
+                            $('.'+options.slider_wrap).css('transform', 'translate3d(0px, 0px, 0px)');
+                            storage.navIndex = options.items;
+                        }
+                    }
 
 
+                },
+                clickNavPrev: function(){
+                    storage.navIndex --;
+                    storage.translate3d = (storage.navIndex - options.items)* storage.widthItem;
 
+                    console.log(storage.translate3d);
+                    if(storage.translate3d<=0){
+                        $('.'+options.slider_wrap).css('transform', 'translate3d(0px, 0px, 0px)');
+                        storage.navIndex = options.items;
+                    } else{
+                        if((storage.widthSlider-(options.items-1)*storage.widthItem)>storage.translate3d){
+                            $('.'+options.slider_wrap).css('transform', 'translate3d(-'+storage.translate3d+'px, 0px, 0px)');
+                        } else{
+                            $('.'+options.slider_wrap).css('transform', 'translate3d(0px, 0px, 0px)');
+                            storage.navIndex = options.items;
+                        }
+                    }
+
+
+                },
+                activeItems: function () {
 
                 }
-                methods.init();
 
-            });
+
+
+            };
+            methods.init();
 
         }
 
 
-
-
-
     })(jQuery);
     $('.slider').sliderPlugin({
-        items:3
+        'items': 2
     });
 
 
