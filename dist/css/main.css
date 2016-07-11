@@ -29,7 +29,7 @@ body {
   width: 6px; }
 
 .content {
-  padding: 300px;
+  padding: 200px 0;
   text-align: center; }
 
 [data-toggle="tooltip"] {
@@ -51,16 +51,36 @@ body {
     left: 0 !important;
     min-width: inherit; }
 
-.slider .item-slider {
-  float: left;
-  position: relative; }
-  .slider .item-slider img {
-    width: 100%; }
-
-.slider .slider-wrap {
-  -webkit-transition: 0.35s;
-  transition: 0.35s; }
-
-.slider .slider-content {
-  position: relative;
-  overflow: hidden; }
+.slider {
+  width: 950px;
+  margin: auto; }
+  .slider.slider-main {
+    position: relative;
+    padding: 0 35px; }
+    .slider.slider-main .item-slider {
+      float: left;
+      position: relative; }
+      .slider.slider-main .item-slider img {
+        width: 100%; }
+    .slider.slider-main .slider-wrap {
+      -webkit-transition: 0.35s;
+      transition: 0.35s; }
+    .slider.slider-main .slider-content {
+      position: relative;
+      overflow: hidden; }
+    .slider.slider-main .controls .nav li {
+      cursor: pointer;
+      list-style: none;
+      background: url("../img/icons/next.png") no-repeat;
+      background-size: 100%;
+      width: 24px;
+      height: 45px;
+      position: absolute;
+      top: 50%;
+      margin-top: -23px; }
+      .slider.slider-main .controls .nav li.next {
+        right: 0; }
+      .slider.slider-main .controls .nav li.prev {
+        left: 0;
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg); }

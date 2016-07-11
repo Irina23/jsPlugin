@@ -169,7 +169,9 @@ $(document).ready(function() {
                 'cItem': 'item',
                 'slider_wrap': 'slider-wrap',
                 'slider_content': 'slider-content',
-                'item_slider': 'item-slider'
+                'item_slider': 'item-slider',
+                'text_next': 'next',
+                'text_prev': 'prev'
             }, options);
 
             var $self = this,
@@ -194,21 +196,39 @@ $(document).ready(function() {
                     storage.widthItem = storage.widthWrap/options.items;
                     storage.widthSlider = storage.widthItem * $self.find('.' + options.item_slider).length;
                     storage.navIndex = options.items;
+                    storage.navActive = options.items;
                     //console.log(storage.widthSlider);
 
                 },
 
                 addWrap: function () {
+                    $self.addClass('slider-main');
                     $('.' + options.cItem).wrap("<div class=" + options.item_slider + "></div>");
                     $('.'+options.item_slider).wrapAll("<div class='slider-wrap'></div>");
                     $('.'+options.slider_wrap).wrapAll("<div class="+options.slider_content+"></div>");
                 },
                 widthSliderCss: function () {
-                    $('.'+options.item_slider).css('width', storage.widthItem+'px');
+                    $('.'+options.item_slider).css('width', storage.widthItem+'px')
+                        .each(function () {
+                            //console.log(storage.navActive);
+                            if(storage.navActive>0){
+                                $('.'+options.item_slider+':nth-child('+storage.navActive+')').addClass('active');
+
+                                storage.navActive--;
+
+
+                            } else{
+                                storage.navActive = options.items;
+                            }
+
+                        });
                     $('.'+options.slider_wrap).css('width', storage.widthSlider+'px');
+
+
+
                 },
                 addNav: function () {
-                    $self.append("<div class='nav'><ul><li class='prev'>prev</li><li class='next'>next</li></ul></div>");
+                    $self.append("<div class='controls'><ul class='nav'><li class='prev'>"+options.text_prev+"</li><li class='next'>"+options.text_next+"</li></ul></div>");
                     $self.on( 'click', '.nav li.next',function () {
                         methods.clickNavNext();
                         methods.activeItems();
@@ -222,11 +242,12 @@ $(document).ready(function() {
                 clickNavNext: function(){
                     storage.navIndex ++;
                     storage.translate3d = (storage.navIndex - options.items)* storage.widthItem;
-                    console.log(storage.translate3d);
+                    //console.log(storage.translate3d);
                     if(storage.translate3d<=0){
                         $('.'+options.slider_wrap).css('transform', 'translate3d(0px, 0px, 0px)');
                         storage.navIndex = options.items;
                     } else{
+
                         if((storage.widthSlider-(options.items-1)*storage.widthItem)>storage.translate3d){
                             $('.'+options.slider_wrap).css('transform', 'translate3d(-'+storage.translate3d+'px, 0px, 0px)');
                         } else{
@@ -241,7 +262,7 @@ $(document).ready(function() {
                     storage.navIndex --;
                     storage.translate3d = (storage.navIndex - options.items)* storage.widthItem;
 
-                    console.log(storage.translate3d);
+                    //console.log(storage.translate3d);
                     if(storage.translate3d<=0){
                         $('.'+options.slider_wrap).css('transform', 'translate3d(0px, 0px, 0px)');
                         storage.navIndex = options.items;
@@ -257,6 +278,32 @@ $(document).ready(function() {
 
                 },
                 activeItems: function () {
+                    storage.removeClass=storage.navIndex-options.items;
+                    //console.log(storage.removeClass);
+                    //console.log(storage.navIndex);
+                    if((storage.removeClass==0) && (storage.navIndex==options.items)){
+                        $('.'+options.item_slider).each(function () {
+                            //console.log(storage.navActive);
+                            $(this).removeClass('active');
+                            if(storage.navActive>0){
+                                $('.'+options.item_slider+':nth-child('+storage.navActive+')').addClass('active');
+
+                                storage.navActive--;
+
+
+                            } else{
+                                storage.navActive = options.items;
+                            }
+
+                        });
+
+
+                    } else {
+                        $('.'+options.item_slider+':nth-child('+storage.navIndex+')').addClass('active');
+                        $('.'+options.item_slider+':nth-child('+storage.removeClass+')').removeClass('active');
+                    }
+
+
 
                 }
 
@@ -270,7 +317,9 @@ $(document).ready(function() {
 
     })(jQuery);
     $('.slider').sliderPlugin({
-        'items': 2
+        'items': 3,
+        'text_next': '',
+        'text_prev': ''
     });
 
 

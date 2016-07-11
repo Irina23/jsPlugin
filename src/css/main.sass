@@ -40,7 +40,7 @@ body
 
 
 .content
-  padding: 300px
+  padding: 200px 0
   text-align: center
 
 [data-toggle="tooltip"]
@@ -65,13 +65,37 @@ body
 
 
 .slider
-  .item-slider
-    float: left
+  width: 950px
+  margin: auto
+  &.slider-main
     position: relative
-    img
-      width: 100%
-  .slider-wrap
-      transition: 0.35s
-  .slider-content
-    position: relative
-    overflow: hidden
+    padding: 0 35px
+    .item-slider
+      float: left
+      position: relative
+      img
+        width: 100%
+    .slider-wrap
+        transition: 0.35s
+    .slider-content
+      position: relative
+      overflow: hidden
+
+
+    .controls
+      .nav
+        li
+          cursor: pointer
+          list-style: none
+          background: url("../img/icons/next.png") no-repeat
+          background-size: 100%
+          width: 24px
+          height: 45px
+          position: absolute
+          top:  50%
+          margin-top: -23px
+          &.next
+            right: 0
+          &.prev
+            left: 0
+            transform: rotate(180deg)
