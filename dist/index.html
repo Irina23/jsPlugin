@@ -2,9 +2,9 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Anke Carola Walter">
-    <meta name="keywords" content="Anke Carola Walter">
-    <title>Anke Carola Walter</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>jsPlugins</title>
     <meta property="og:image" content="img/icons/logo.png">
     <meta name="robots" content="index,follow">
     <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico">
@@ -36,8 +36,27 @@
           <div class="item"><img src="img/content/photo-4.jpg" alt="photo-4"></div>
           <div class="item"><img src="img/content/photo-5.jpg" alt="photo-5"></div>
         </div>
-      </div>
+      </div><a href="#modal" class="open-modal">Open</a><a href="#modal2" class="open-modal">Open2</a>
       <footer></footer>
+      <div id="modal" class="modal_div">
+        <div class="modal_close">Close</div>
+        <div class="holder-content">
+          <p>Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів.</p>
+        </div>
+      </div>
+      <div id="modal2" class="modal_div">
+        <div class="modal_close">Close</div>
+        <div class="holder-content">
+          <p>Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні.</p>
+        </div>
+      </div>
+      <div id="promo" class="modal_div">
+        <div class="modal_close">Close</div>
+        <div class="holder-content">
+          <p>Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Promo</p>
+        </div>
+      </div>
+      <div id="overlay"></div>
       <script src="bower_components/jquery/dist/jquery.js"></script>
       <!--script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js")-->
       <!--script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js")-->

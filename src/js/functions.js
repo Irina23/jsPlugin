@@ -289,6 +289,7 @@ $(document).ready(function() {
                                 $('.'+options.item_slider+':nth-child('+storage.navActive+')').addClass('active');
 
                                 storage.navActive--;
+                                console.log(storage.navActive);
 
 
                             } else{
@@ -323,6 +324,113 @@ $(document).ready(function() {
     });
 
 
+
+
+
+
+
+    (function () {
+        $.fn.modalPlugin = function(options){
+            var options = $.extend({
+                'overlay': '#overlay',
+                'close': '.modal_close, #overlay',
+                'open_modal': '.open-modal',
+                'modal': '.modal_div'
+
+            }, options);
+            var $self = this
+            var methods = {
+                init: function(){
+                    $(options.open_modal).click( function(event){
+                        event.preventDefault();
+                        //console.log('open');
+                        var div = $(this).attr('href');
+                        $(options.overlay).fadeIn(400);
+                        $(div).fadeIn(400);
+                            //.css('display', 'block')
+                            //.animate({opacity: 1, top: '50%'}, 200);
+                        $('body').addClass('no-scroll');
+                    });
+
+                    $(options.close).click( function(){
+                        //console.log('close');
+                        //$(options.modal).animate({opacity: 0, top: '45%'}, 200);
+                        $(options.modal).fadeOut(400);
+                        $(options.overlay).fadeOut(400);
+                        $('body').removeClass('no-scroll');
+                    });
+
+                    $($self).keydown(function(eventObject){
+                        if (eventObject.which == 27) {
+                            $(options.modal).fadeOut(400);
+                            $(options.overlay).fadeOut(400);
+                            $('body').removeClass('no-scroll');
+                        }
+                    });
+
+
+                }
+
+
+            };
+            methods.init();
+
+        }
+
+
+    })(jQuery);
+
+
+    //$('body').modalPlugin();
+
+    (function () {
+        $.fn.modalPromoPlugin = function(options){
+            var options = $.extend({
+                'overlay': '#overlay',
+                'close': '.modal_close, #overlay',
+                'modal': '#promo'
+
+            }, options);
+            var $self = this
+            var methods = {
+                init: function(){
+                    $(document).mousemove(function(e) {
+                        var y = e.pageY || e.clientY || 0;
+                        if(y <= 5){
+                            console.log('open');
+                            $(options.overlay).fadeIn(400);
+                            $(options.modal).fadeIn(400);
+                            $('body').addClass('no-scroll');
+                        }
+                        console.log(y);
+                    });
+
+
+
+                    $(options.close).click( function(){
+                        $(options.modal).fadeOut(400);
+                        $(options.overlay).fadeOut(400);
+                        $('body').removeClass('no-scroll');
+                    });
+
+
+
+
+                }
+
+
+            };
+            methods.init();
+
+        }
+
+
+    })(jQuery);
+
+
+    $(document).modalPromoPlugin();
+    
+    
 });
 
 

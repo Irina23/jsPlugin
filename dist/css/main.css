@@ -84,3 +84,23 @@ body {
         left: 0;
         -webkit-transform: rotate(180deg);
                 transform: rotate(180deg); }
+
+.modal_div {
+  display: none;
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff; }
+
+#overlay {
+  z-index: 30;
+  position: fixed;
+  background-color: #000;
+  opacity: 0.87;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  display: none; }
