@@ -7,7 +7,8 @@
         map = new google.maps.Map(document.getElementById('map_canvas'), {
             zoom: 6,
             center: new google.maps.LatLng(49.26780455063753,31.322021484375),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false
 
         });
 
