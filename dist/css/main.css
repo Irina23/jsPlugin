@@ -104,3 +104,6 @@ body {
   left: 0;
   cursor: pointer;
   display: none; }
+
+#map_canvas {
+  height: 500px; }

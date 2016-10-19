@@ -415,7 +415,6 @@ $(document).ready(function() {
 
 
 
-
                 }
 
 
@@ -428,7 +427,13 @@ $(document).ready(function() {
     })(jQuery);
 
 
-    $(document).modalPromoPlugin();
+    //$(document).modalPromoPlugin();
+
+
+
+
+
+
     
     
 });
