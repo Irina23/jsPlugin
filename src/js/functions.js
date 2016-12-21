@@ -317,11 +317,12 @@ $(document).ready(function() {
 
 
     })(jQuery);
+    /*
     $('.slider').sliderPlugin({
         'items': 3,
         'text_next': '',
         'text_prev': ''
-    });
+    });*/
 
 
 

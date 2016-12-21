@@ -126,32 +126,64 @@ body
 #map_canvas
   height: 500px
 
-
-
-#hexagon
-  width: 70px
-  height: 40px
-  background: red
+.content
+  background: #666
   position: relative
-  &:before
+  z-index: 10
+  width: 1200px
+  margin: 50px auto
 
-    content: ""
-    position: absolute
-    top: -20px
-    left: 0
-    width: 0
-    height: 0
-    border-left: 35px solid transparent
-    border-right: 35px solid transparent
-    border-bottom: 20px solid red
+//#hexagon
+  position: absolute
+  top: 70px
+  left: 0
+  .hexagon_row
+    padding: 26px 0
+    width: 100%
+    overflow: hidden
+    height: 90px
+    box-sizing: border-box
+    display: flex
+    &:nth-child(2n)
+      //padding: 0
+      margin-left: -40px
+      margin-top: -20px
 
-  &:after
-    content: ""
-    position: absolute
-    bottom: -20px
-    left: 0
-    width: 0
-    height: 0
-    border-left: 35px solid transparent
-    border-right: 35px solid transparent
-    border-top: 20px solid red
+  .item
+    display: inline-block
+    vertical-align: middle
+    margin: 3px
+    width: 70px
+    height: 40px
+    background: #fd931b
+    position: relative
+    &.white
+      background: #fff
+      &:before
+        border-bottom: 20px solid #fff
+      &:after
+        border-top: 20px solid #fff
+    &:before
+
+      content: ""
+      position: absolute
+      top: -20px
+      left: 0
+      width: 0
+      height: 0
+      border-left: 35px solid transparent
+      border-right: 35px solid transparent
+      border-bottom: 20px solid #fd931b
+
+    &:after
+      content: ""
+      position: absolute
+      bottom: -20px
+      left: 0
+      width: 0
+      height: 0
+      border-left: 35px solid transparent
+      border-right: 35px solid transparent
+      border-top: 20px solid #fd931b
+
+
