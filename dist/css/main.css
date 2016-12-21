@@ -107,3 +107,29 @@ body {
 
 #map_canvas {
   height: 500px; }
+
+#hexagon {
+  width: 70px;
+  height: 40px;
+  background: red;
+  position: relative; }
+  #hexagon:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 20px solid red; }
+  #hexagon:after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-top: 20px solid red; }
